@@ -15,6 +15,7 @@
                 </div>
 
                 <div class="card-body">
+                    @include('components._messages')
                     @foreach ($questions as $question)
                     <div class="media">
                         <div class="d-flex flex-column counters">

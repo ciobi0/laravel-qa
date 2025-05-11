@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Http\Requests\AskQuestionRequest;
 use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
@@ -30,9 +31,16 @@ class QuestionsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AskQuestionRequest $request)
     {
-        //
+
+        Question::create([
+            'title' => $request->title,
+            'body' => $request->body,
+            'user_id' => 1,
+        ]);
+
+        return redirect()->route('questions.index')->with('success', 'Your question has been submitted');
     }
 
     /**
