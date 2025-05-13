@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Question;
 use App\Http\Requests\AskQuestionRequest;
+use Illuminate\Console\View\Components\Ask;
 use Illuminate\Http\Request;
 
 class QuestionsController extends Controller
@@ -56,15 +57,19 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        return view('questions.edit', compact('question'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Question $question)
+    public function update(AskQuestionRequest $request, Question $question)
     {
-        //
+        $question->update([
+            'title' => $request->title,
+            'body' => $request->body
+        ]);
+        return redirect()->route('questions.index')->with('success', 'Your question has been updated');
     }
 
     /**
