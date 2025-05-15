@@ -10504,3 +10504,7 @@ a.text-dark:focus {
     .view {
       margin-top: 10px;
     }
+
+    .form-delete {
+      display: inline;
+    }
