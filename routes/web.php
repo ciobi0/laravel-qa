@@ -7,4 +7,6 @@ Route::get('/', function () {
 });
 
 Route::resource('questions', App\Http\Controllers\QuestionsController::class)->except('show');
+// Route::post('/questions/{question}/answers', [App\Http\Controllers\AnswersController::class, 'store'])->name('answers.store');
+Route::resource('questions.answers', App\Http\Controllers\AnswersController::class)->except('index', 'create', 'show');
 Route::get('/questions/{slug}', [App\Http\Controllers\QuestionsController::class, 'show'])->name('questions.show');
