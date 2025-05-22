@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\Question;
+use App\Models\Answer;
+use App\Policies\AnswerPolicy;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Gate;
 
