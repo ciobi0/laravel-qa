@@ -11,3 +11,5 @@ Route::resource('questions', App\Http\Controllers\QuestionsController::class)->e
 Route::resource('questions.answers', App\Http\Controllers\AnswersController::class)->except('index', 'create', 'show');
 Route::get('/questions/{slug}', [App\Http\Controllers\QuestionsController::class, 'show'])->name('questions.show');
 Route::post('/answers/{answer}/accept', App\Http\Controllers\AcceptAnswerController::class)->name('answers.accept');
+Route::post('/questions/{question}/favorites', [App\Http\Controllers\FavoritesController::class, 'store'])->name('questions.favorite');
+Route::delete('/questions/{question}/favorites', [App\Http\Controllers\FavoritesController::class, 'destroy'])->name('questions.unfavorite');
