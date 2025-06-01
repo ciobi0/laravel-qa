@@ -24,33 +24,24 @@
                                 <i class="fas fa-caret-down fa-3x"></i>
                             </a>
                             <a title="Click to mark as favorite question (click again to undo)" class="favorite mt-2 {{ Auth::guest() ? 'off' : ($question->is_favorited ? 'favorited' : '') }}"
-                            onclick="event.preventDefault(); document.getElementById('favorite-question-{{ $question->id }}').submit(); "
-                            >
+                                onclick="event.preventDefault(); document.getElementById('favorite-question-{{ $question->id }}').submit(); ">
                                 <i class="fas fa-star fa-2x"></i>
                                 <span class="favorites-count">{{ $question->favorites_count }}</span>
                             </a>
                             <form id="favorite-question-{{ $question->id }}" action="/questions/{{ $question->id }}/favorites" method="POST" style="display: none;">
                                 @csrf
                                 @if ($question->is_favorited)
-                                    @method('DELETE')
+                                @method('DELETE')
                                 @endif
                             </form>
                         </div>
                         <div class="media-body">
                             {!! e($question->body_html) !!}
-                            <div class="float-right">
-                                <span class="text-muted">
-                                    Answered {{ $question->created_date }}
-                                </span>
-                                <div class="media mt-2">
-                                    <a href="{{ $question->user->url }}" class="pr-2">
-                                        <img src="{{ $question->user->avatar }}" alt="">
-                                    </a>
-                                    <div class="media-body mt-1">
-                                        <h5 class="mt-0">
-                                            <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
-                                        </h5>
-                                    </div>
+                            <div class="row">
+                                <div class="col-4"></div>
+                                <div class="col-4"></div>
+                                <div class="col-4">
+                                    <user-info :model="{{ $question }}" label="Asked by"></user-info>
                                 </div>
                             </div>
                         </div>
@@ -60,8 +51,8 @@
         </div>
     </div>
     @include('answers._index', [
-        'answers' => $question->answers,
-        'answersCount' => $question->answers_count,
+    'answers' => $question->answers,
+    'answersCount' => $question->answers_count,
     ])
     @include('answers._create')
 </div>
