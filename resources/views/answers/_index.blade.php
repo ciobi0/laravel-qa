@@ -45,11 +45,7 @@
 
                                                    <a @click.prevent="edit" class="btn btn-sm btn-outline-info">Edit</a>
 
-                                                   <form class="form-delete" action="{{ route('questions.answers.destroy', [$question->id ,$answer->id]) }}" method="POST">
-                                                       @csrf
-                                                       @method('DELETE')
-                                                       <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                                   </form>
+                                                   <button @click="destroy" class="btn btn-sm btn-outline-danger">Delete</button>
 
                                                </div>
                                            </div>

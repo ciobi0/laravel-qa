@@ -60,6 +60,6 @@ class AnswersController extends Controller
      */
     public function destroy(Question $question, Answer $answer)
     {
-        
+
     }
 }

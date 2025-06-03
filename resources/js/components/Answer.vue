@@ -14,7 +14,7 @@ export default {
     },
     methods: {
         update() {
-            axios.patch(`/questions/${this.questionId}/answers/${this.id}`, {
+            axios.patch(this.endpoint, {
                 body: this.body
             }).then(res => {
                 this.bodyHtml = res.data.body_html;
@@ -31,11 +31,21 @@ export default {
         cancel() {
             this.body = this.beforeEditCache;
             this.editing = false;
-        }
+        },
+        destroy() {
+            if (confirm('Are you sure you want to delete this answer?')) {
+                axios.delete(this.endpoint)
+                    .then(res => { this.$emit('deleted') })
+            }
+        },
     },
+
     computed: {
         isInvalid() {
             return this.body.length < 10;
+        },
+        endpoint() {
+            return `/questions/${this.questionId}/answers/${this.id}`;
         }
     }
 }
